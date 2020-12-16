@@ -8,6 +8,8 @@
 * malloc（内存管理）的[实现原理](./pmalloc.c)
 * container（容器）[实现原理](./container.go)
 * VM（虚拟机）[实现原理](./vm.cpp)
+* ping[实现原理](./ping.py)
+* ether以太网[实现原理](./send_ether.py)
 
 ## 笔记
 
@@ -26,3 +28,4 @@ g++ vm.cpp -o vm
 * project-base-learning：https://github.com/tuvtran/project-based-learning
 * 简单的容器实现：https://mp.weixin.qq.com/s/wTby-KcsQdss7Sg20ay6vw
 * 简单的虚拟机实现：https://justinmeiners.github.io/lc3-vm/
+* Linux网络编程：https://network.fasionchan.com/zh_CN/latest/index.html
