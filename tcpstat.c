@@ -4,7 +4,7 @@
 #include <net/tcp.h>
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Xiaocai");
+MODULE_AUTHOR("Pedro");
 MODULE_DESCRIPTION("TCP state statistics");
 MODULE_VERSION("1.0");
 
