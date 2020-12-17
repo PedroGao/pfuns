@@ -10,6 +10,7 @@
 * VM（虚拟机）[实现原理](./vm.cpp)
 * ping[实现原理](./ping.py)
 * ether以太网[实现原理](./send_ether.py)
+* linux [内核模块实现](./linux_module.md)
 
 ## 笔记
 
