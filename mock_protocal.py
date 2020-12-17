@@ -238,6 +238,15 @@ class UDP(object):
         return packet
 
 
+def send(ipobj, tcpobj, iface="eth0", retry=1, timeout=0.3):
+    s = socket.socket(socket.AF_INET,
+                      socket.SOCK_RAW,
+                      socket.IPPROTO_RAW)
+    data = "TEST!!"
+    packet = ipobj.pack() + tcpobj.pack() + data.encode('utf8')
+    s.sendto(packet)
+
+
 def main():
     parser = OptionParser()
     parser.add_option("-s", "--src", dest="src", type="string",
