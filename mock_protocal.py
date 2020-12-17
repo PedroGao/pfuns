@@ -33,6 +33,7 @@ class ETHER(object):
         self.type = type
 
     def pack(self):
+        # 此处只有以太网协议的头部
         ethernet = struct.pack('!6s6sH',
                                self.dst,
                                self.src,
@@ -223,12 +224,17 @@ class UDP(object):
     def pack(self, src, dst, proto=socket.IPPROTO_UDP):
         length = self.length + len(self.payload)
         pseudo_header = struct.pack('!4s4sBBH',
-                                    socket.inet_aton(
-                                        src), socket.inet_aton(dst), 0,
-                                    proto, length)
+                                    socket.inet_aton(src),
+                                    socket.inet_aton(dst),
+                                    0,
+                                    proto,
+                                    length)
         self.checksum = checksum(pseudo_header)
         packet = struct.pack('!HHHH',
-                             self.src, self.dst, length, 0)
+                             self.src,
+                             self.dst,
+                             length,
+                             0)
         return packet
 
 
