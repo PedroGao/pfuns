@@ -1,7 +1,7 @@
 '''
 发送以太网数据包
 
-python3 send_ether.py -i enp2s0 -t b0:83:fe:70:fb:b5 -T 0x1024 -d "Hello, world!"
+python3 send_ether.py -i eth0 -t 00:15:5d:2d:18:f0 -T 0x1024 -d "Hello, world!"
 '''
 from argparse import ArgumentParser
 import base64
@@ -20,14 +20,16 @@ def parse_arguments():
         '-i',
         '--iface',
         dest='iface',
-        required=True
+        default='eth0',
+        required=False,
     )
     # dest mac address
     parser.add_argument(
         '-t',
         '--to',
         dest='to',
-        required=True
+        default='00:15:5d:2d:18:f0',
+        required=False
     )
     # data to send
     parser.add_argument(

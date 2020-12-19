@@ -1,5 +1,7 @@
 '''
 ping ICMP 协议实现
+
+python3.9 ping.py '8.8.8.8'
 '''
 
 
