@@ -37,17 +37,19 @@ def calculate_checksum(icmp):
 def pack_icmp_echo_request(ident, seq, payload):
     pseudo = struct.pack(
         '!BBHHH',
-        8,
-        0,
-        0,
-        ident,
-        seq,
+        8, # icmp 消息類型
+        0, # code 默認 0
+        0, # 校驗和，當前為 0 
+        ident, # 標識，當前進程 ID
+        seq, # 序列號，如 1
     ) + payload
     checksum = calculate_checksum(pseudo)
+    # 計算校驗和後，将原来的校验和 0 替换成现在的校验和
     return pseudo[:2] + checksum + pseudo[4:]
 
 
 def unpack_icmp_echo_reply(icmp):
+    # 这里的 _ 是忽略的校验和
     _type, code, _, ident, seq, = struct.unpack(
         '!BBHHH',
         icmp[:8]
@@ -142,4 +144,4 @@ def ping(addr):
 
 
 if __name__ == '__main__':
-    ping(sys.argv[1])
+    ping('8.8.8.8')
