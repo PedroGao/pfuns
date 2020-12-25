@@ -7,7 +7,7 @@
 * jit（即时编译）的[实现原理](./jit.c)
 * malloc（内存管理）的[实现原理](./pmalloc.c)
 * container（容器）[实现原理](./container.go)
-* VM（虚拟机）[实现原理](./vm.cpp)
+* VM（虚拟机）[实现原理](./vm.md)
 * ping[实现原理](./ping.py)
 * ether以太网[实现原理](./send_ether.py)
 * linux [内核模块实现](./linux_module.md)
