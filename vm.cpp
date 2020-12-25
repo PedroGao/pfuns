@@ -26,8 +26,8 @@ enum
     R_R5,
     R_R6,
     R_R7,
-    R_PC, /* program counter */
-    R_COND,
+    R_PC, /* program counter  PC */
+    R_COND, /* 条件寄存器 */
     R_COUNT
 };
 
@@ -54,10 +54,10 @@ enum
     OP_NOT,    /* bitwise not */
     OP_LDI,    /* load indirect */
     OP_STI,    /* store indirect */
-    OP_JMP,    /* jump */
+    OP_JMP,    /* jump 跳转 */
     OP_RES,    /* reserved (unused) */
     OP_LEA,    /* load effective address */
-    OP_TRAP    /* execute trap */
+    OP_TRAP    /* execute trap 陷入内核 */
 };
 
 /* Memory Mapped Registers */
@@ -82,7 +82,7 @@ enum
 /* 65536 locations */
 uint16_t memory[UINT16_MAX];
 
-/* Register Storage */
+/* Register Storage 寄存器 */
 uint16_t reg[R_COUNT];
 
 /* Sign Extend */
@@ -95,7 +95,7 @@ uint16_t sign_extend(uint16_t x, int bit_count)
     return x;
 }
 
-/* Swap */
+/* Swap  将小端序转化为大端序 */
 uint16_t swap16(uint16_t x)
 {
     return (x << 8) | (x >> 8);
@@ -119,19 +119,23 @@ void update_flags(uint16_t r)
 }
 
 /* Read Image File */
+/* image file 是二进制数据 */
 void read_image_file(FILE *file)
 {
     /* the origin tells us where in memory to place the image */
     uint16_t origin;
+    // 读 1 * 16 字节
     fread(&origin, sizeof(origin), 1, file);
     origin = swap16(origin);
 
     /* we know the maximum file size so we only need one fread */
     uint16_t max_read = UINT16_MAX - origin;
     uint16_t *p = memory + origin;
+    // 读剩下的所有字节
     size_t read = fread(p, sizeof(uint16_t), max_read, file);
 
     /* swap to little endian */
+    // 将所有字节转化为大端序
     while (read-- > 0)
     {
         *p = swap16(*p);
